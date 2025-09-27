@@ -13,7 +13,7 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
 
-	dynamic := alice.New(app.sessionManager.LoadAndSave, preventCSRF)
+	dynamic := alice.New(app.sessionManager.LoadAndSave, preventCSRF, app.authenticate)
 
 	mux.Handle("GET /{$}", dynamic.ThenFunc(app.home))
 	mux.Handle("GET /snippet/view/{id}", dynamic.ThenFunc(app.snippetView))

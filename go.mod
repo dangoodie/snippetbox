@@ -12,4 +12,8 @@ require (
 	github.com/spf13/pflag v1.0.10
 )
 
-require filippo.io/edwards25519 v1.1.0 // indirect
+require (
+	filippo.io/edwards25519 v1.1.0 // indirect
+	github.com/justinas/nosurf v1.2.0 // indirect
+	golang.org/x/crypto v0.42.0 // indirect
+)

@@ -10,6 +10,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/justinas/alice v1.2.0
 	github.com/justinas/nosurf v1.2.0
+	github.com/lmittmann/tint v1.1.2
 	github.com/spf13/pflag v1.0.10
 	golang.org/x/crypto v0.42.0
 )

@@ -13,6 +13,7 @@ import (
 
 	flag "github.com/spf13/pflag"
 
+	"github.com/dangoodie/snippetbox/internal/logging"
 	"github.com/dangoodie/snippetbox/internal/models"
 
 	"github.com/alexedwards/scs/mysqlstore"
@@ -34,7 +35,7 @@ type application struct {
 
 func main() {
 	_ = godotenv.Load()
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	logger := logging.NewLogger()
 
 	addr := flag.StringP("addr", "a", ":4000", "HTTP network address")
 	dsn := flag.String("dsn", "", "MySQL data source name")

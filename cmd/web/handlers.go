@@ -206,6 +206,11 @@ func (app *application) userLoginPost(w http.ResponseWriter, r *http.Request) {
 
 	app.sessionManager.Put(r.Context(), "authenticatedUserID", id)
 
+	if app.sessionManager.Exists(r.Context(), "redirectPathAfterLogin") {
+		redirectPathAfterLogin := app.sessionManager.PopString(r.Context(), "redirectPathAfterLogin")
+		http.Redirect(w, r, redirectPathAfterLogin, http.StatusSeeOther)
+	}
+
 	http.Redirect(w, r, "/snippet/create", http.StatusSeeOther)
 }
 

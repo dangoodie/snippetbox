@@ -23,6 +23,7 @@ import (
 )
 
 type application struct {
+	debug          bool
 	logger         *slog.Logger
 	snippets       models.SnippetModelInterface
 	users          models.UserModelInterface
@@ -35,8 +36,9 @@ func main() {
 	_ = godotenv.Load()
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
-	addr := flag.String("addr", ":4000", "HTTP network address")
+	addr := flag.StringP("addr", "a", ":4000", "HTTP network address")
 	dsn := flag.String("dsn", "", "MySQL data source name")
+	debug := flag.BoolP("debug", "d", false, "Set debug mode")
 	flag.Parse()
 
 	if *dsn == "" {
@@ -74,6 +76,7 @@ func main() {
 		templateCache:  templateCache,
 		formDecoder:    formDecoder,
 		sessionManager: sessionManger,
+		debug:          *debug,
 	}
 
 	tlsConfig := &tls.Config{

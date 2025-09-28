@@ -35,7 +35,7 @@ type application struct {
 
 func main() {
 	_ = godotenv.Load()
-	logger := logging.NewLogger()
+	logger := logging.NewLogger(os.Stderr)
 
 	addr := flag.StringP("addr", "a", ":4000", "HTTP network address")
 	dsn := flag.String("dsn", "", "MySQL data source name")
